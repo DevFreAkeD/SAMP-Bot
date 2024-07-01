@@ -2,7 +2,7 @@ require('dotenv').config();
 const { Client, GatewayIntentBits, Partials, ActivityType, Collection, ChannelType } = require('discord.js');
 
 // Check for necessary environment variables
-if (!process.env.DISCORD_TOKEN || !process.env.CMD_PREFIX) {
+if (!process.env.DISCORD_TOKEN || !process.env.CMD_PREFIX || !process.env.SAMP_SERVER_IP) {
     console.error('Missing necessary environment variables. Please check your .env file.');
     process.exit(1);
 }
