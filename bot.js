@@ -55,7 +55,7 @@ function logCommand(message, isError) {
 
 client.once('ready', () => {
     console.log(`${client.user.username} is ready!`);
-    client.user.setActivity('SA-MP', { type: ActivityType.Competing });
+    client.user.setActivity('SA-MP', { type: ActivityType.Playing });
 });
 
 client.on('warn', console.warn);
