@@ -1,4 +1,4 @@
-const { EmbedBuilder,  } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 const samp = require('samp-query');
 const AsciiTable = require('ascii-table');
 
@@ -11,13 +11,13 @@ module.exports = [
     
             if (authorName === 'freaked_') {
                 try {
-                    await message.reply('Hi, FreAkeD!');
+                    await message.reply('Hi, FreAkeD! My Master.');
                 } catch (error) {
                     console.error('Error replying to message:', error);
                 }
             } else {
                 try {
-                    await message.reply(`You MF! <@${message.author.id}>!`);
+                    await message.reply(`Hi... <@${message.author.id}>!`);
                 } catch (error) {
                     console.error('Error replying to message:', error);
                 }
