@@ -19,6 +19,6 @@ SAMP Bot is Discord Bot that displays informations about San Andreas Multiplayer
 ## Commands
 - `ip` - Shows IP address of a SA:MP Server
 - `server` - Displays informations about SA:MP Server
-`players` - Displays List of all Online Players.
-`ping` - Returns latency and Test Command to Test Bot.
-`bot` - Check Bot Credits.
+- `players` - Displays List of all Online Players.
+- `ping` - Returns latency and Test Command to Test Bot.
+- `bot` - Check Bot Credits.
