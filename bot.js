@@ -42,7 +42,7 @@ client.on('messageCreate', async message => {
         logCommand(message, false);
     } catch (error) {
         logCommand(message, true);
-        console.error(error);
+        console.error(`Error executing command ${commandName}:`, error);
         message.reply('An error occurred while executing the command.');
     }
 });
