@@ -3,6 +3,7 @@ const samp = require('samp-query');
 const AsciiTable = require('ascii-table');
 const fs = require('fs');
 const path = require('path');
+const { hasAdminPermission } = require('./permission');
 require('dotenv').config();
 
 module.exports = [
@@ -165,6 +166,10 @@ module.exports = [
         name: 'config',
         description: 'Configures the bot settings',
         async execute(client, message, args) {
+            if (!hasAdminPermission(message.member)) {
+                return message.reply('You do not have permission to use this command.');
+            }
+    
             const subCommand = args[0];
             const newValue = args.slice(1).join(' ');
 
@@ -211,6 +216,10 @@ module.exports = [
         name: 'setip',
         description: 'Sets the SA:MP server IP',
         async execute(client, message, args) {
+            if (!hasAdminPermission(message.member)) {
+                return message.reply('You do not have permission to use this command.');
+            }
+    
             const newIp = args[0];
 
             if (!newIp) {
@@ -232,6 +241,10 @@ module.exports = [
         name: 'setbotname',
         description: 'Renames the bot',
         async execute(client, message, args) {
+            if (!hasAdminPermission(message.member)) {
+                return message.reply('You do not have permission to use this command.');
+            }
+    
             const newName = args.join(' ');
     
             if (!newName) {
