@@ -18,8 +18,14 @@ SAMP Bot is Discord Bot that displays informations about San Andreas Multiplayer
 - Run Bot Using `node bot.js` command in Terminal.
 
 ## Commands
+#### User Commands
 - `ip` - Shows IP address of a SA:MP Server
 - `server` - Displays informations about SA:MP Server
-`players` - Displays List of all Online Players.
-`ping` - Returns latency and Test Command to Test Bot.
-`bot` - Check Bot Credits.
+- `players` - Displays List of all Online Players.
+- `ping` - Returns latency and Test Command to Test Bot.
+- `bot` - Check Bot Credits.
+
+#### Admin Commands
+- `config` - command to change bot configurations such as `SAMP_SERVER_IP` and `Bot Name` include sub command `!config setip <SAMP SERVER IP>` and `!config botname <Bot Name>`.
+- `setip` - Dynamically Change SAMP Server IP.
+- `setbotname` - Dynamically Change Bot Name.
