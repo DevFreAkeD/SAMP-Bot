@@ -175,6 +175,7 @@ module.exports = [
                     .setDescription('Use the following sub-commands to configure the bot:')
                     .addFields(
                         { name: '!config setip <ip>', value: 'Set the SA:MP server IP. Example: `!config setip 127.0.0.1:7777`' },
+                        { name: '!config rename <new_name>', value: 'Rename the bot. Example: `!config botname Doraemon`' }
                     );
                 return message.channel.send({ embeds: [embed] });
             }
@@ -190,8 +191,59 @@ module.exports = [
                 envFileContent = envFileContent.replace(/SAMP_SERVER_IP=.*/g, `SAMP_SERVER_IP=${newValue}`);
                 fs.writeFileSync(envFilePath, envFileContent);
                 return message.channel.send(`Server IP has been set to \`${newValue}\``);
+            } else if (subCommand === 'botname') {
+                if (!newValue) {
+                    return message.channel.send('Please provide a new bot name. Example: `!config botname Doraemon`');
+                }
+                try {
+                    await client.user.setUsername(newValue);
+                    return message.channel.send(`Bot username has been changed to \`${newValue}\``);
+                } catch (error) {
+                    console.error('Error renaming the bot:', error);
+                    return message.channel.send('An error occurred while renaming the bot.');
+                }
             } else {
                 return message.channel.send('Unknown sub-command. Use `!config` to see available options.');
+            }
+        }
+    },
+    {
+        name: 'setip',
+        description: 'Sets the SA:MP server IP',
+        async execute(client, message, args) {
+            const newIp = args[0];
+
+            if (!newIp) {
+                return message.channel.send('Please provide a valid IP address. Example: `!setip 127.0.0.1:7777`');
+            }
+
+            process.env.SAMP_SERVER_IP = newIp;
+
+            // Optionally, save to a .env file
+            const envFilePath = path.resolve(__dirname, '../.env');
+            let envFileContent = fs.readFileSync(envFilePath, 'utf-8');
+            envFileContent = envFileContent.replace(/SAMP_SERVER_IP=.*/g, `SAMP_SERVER_IP=${newIp}`);
+            fs.writeFileSync(envFilePath, envFileContent);
+
+            return message.channel.send(`Server IP has been set to \`${newIp}\``);
+        }
+    },
+    {
+        name: 'setbotname',
+        description: 'Renames the bot',
+        async execute(client, message, args) {
+            const newName = args.join(' ');
+    
+            if (!newName) {
+                return message.channel.send('Please provide a new bot name. Example: `!setbotname NewBotName`');
+            }
+    
+            try {
+                await client.user.setUsername(newName);
+                return message.channel.send(`Bot username has been changed to \`${newName}\``);
+            } catch (error) {
+                console.error('Error renaming the bot:', error);
+                return message.channel.send('An error occurred while renaming the bot.');
             }
         }
     }
